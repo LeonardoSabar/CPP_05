@@ -1,9 +1,9 @@
 NAME		:= Bureaucrat
 CFLAGS		:= -Wextra -Wall -Werror -std=c++98
-SRCS_PATH	:= ./source/
+SRCS_PATH	:= ./sources/
 .SILENT:
 
-HEADERS		:= -I ./include
+HEADERS		:= -I ./includes
 
 SRCS		:= $(addprefix $(SRCS_PATH), \
 				main.cpp \
