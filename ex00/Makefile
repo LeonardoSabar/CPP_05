@@ -1,20 +1,35 @@
-NAME = bureaucrat
+NAME		:= Bureaucrat
+CFLAGS		:= -Wextra -Wall -Werror -std=c++98
+SRCS_PATH	:= ./source/
+.SILENT:
 
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+HEADERS		:= -I ./include
 
-SRC = main.cpp Bureaucrat.cpp
-OBJ = $(SRC:.cpp=.o)
+SRCS		:= $(addprefix $(SRCS_PATH), \
+				main.cpp \
+				Bureaucrat.cpp
+			)
 
-all: $(NAME)
+OBJS		:= $(SRCS:$(SRCS_PATH)%.cpp=obj/%.o)
 
-$(NAME): $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+all: ${NAME}
+
+${NAME}: ${OBJS}
+	@c++ ${CFLAGS} ${HEADERS} ${OBJS} -o ${NAME}
+
+obj/%.o: ${SRCS_PATH}%.cpp | obj_dirs
+	@c++ ${CFLAGS} -c ${HEADERS} $< -o $@
+	@printf "Compiling: ${notdir $<}\n"
+
+obj_dirs:
+	@mkdir -p $(dir ${OBJS})
 
 clean:
-	rm -f $(OBJ)
+	@rm -rf obj
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f ${NAME}
 
 re: fclean all
+
+.PHONY: all clean fclean re
