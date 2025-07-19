@@ -7,10 +7,12 @@ SRC_DIR     := sources
 OBJ_DIR     := obj
 
 SRCS        := $(SRC_DIR)/main.cpp \
-               $(SRC_DIR)/Bureaucrat.cpp
+               $(SRC_DIR)/Bureaucrat.cpp \
+               $(SRC_DIR)/Form.cpp
 
 OBJS        := $(OBJ_DIR)/main.o \
-               $(OBJ_DIR)/Bureaucrat.o
+               $(OBJ_DIR)/Bureaucrat.o \
+               $(OBJ_DIR)/Form.o
 
 all: $(NAME)
 
@@ -30,3 +32,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
